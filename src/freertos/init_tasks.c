@@ -7,5 +7,6 @@ void init_tasks(void) {
     launch_radio_task();
     launch_can_task();
     launch_housekeeping_task();
+    launch_rx_task();
 
 }

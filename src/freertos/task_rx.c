@@ -14,8 +14,8 @@
 
 TaskHandle_t rxTaskHandle = NULL;
 
-void rx_task(void *params)
-{
+void rx_task(void *params) {
+    printf("[RX] Starting RX task...\n");
     //static uint8_t rx_buf[RX_BUFFER_SIZE];
     //static uint16_t rx_len = 0;
 
