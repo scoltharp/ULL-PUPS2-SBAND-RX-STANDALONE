@@ -8,15 +8,17 @@
 #include "core/message_queue.h"
 #include "config.h"
 #include "debug.h"
+#include "task_rx.h"
 
-void gpio_callback(uint gpio, uint32_t events)
+void irq_task(uint gpio, uint32_t events)
 {
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 
     if (gpio_get(RF_DIO1))
     {
-        vTaskNotifyGiveFromISR(radioTaskHandle, &xHigherPriorityTaskWoken);
+        vTaskNotifyGiveFromISR(rxTaskHandle, &xHigherPriorityTaskWoken);
     }
 
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
+
