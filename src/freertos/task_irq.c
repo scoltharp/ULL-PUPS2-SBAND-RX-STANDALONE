@@ -19,9 +19,9 @@ void irq_task(uint gpio, uint32_t events)
 {
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 
-    if (gpio_get(RF_DIO1))
+    if (gpio_get(RF_DIO2))
     {
-        printf("[IRQ] DIO1 interrupt received\n");
+        printf("[IRQ] DIO2 interrupt received\n");
         vTaskNotifyGiveFromISR(rxTaskHandle, &xHigherPriorityTaskWoken);
     }
 

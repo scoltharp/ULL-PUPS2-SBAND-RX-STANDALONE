@@ -18,5 +18,5 @@ void init_spi() {
     gpio_set_function(SPI_MISO_PIN1, GPIO_FUNC_SPI);
 
     printf("[SPI_INIT] setting up ISR\n");
-    gpio_set_irq_enabled_with_callback(RF_DIO1, GPIO_IRQ_EDGE_RISE, true, &irq_task);
+    gpio_set_irq_enabled_with_callback(RF_DIO2, GPIO_IRQ_EDGE_RISE, true, &irq_task);
 }
