@@ -54,6 +54,6 @@ void launch_rx_task(void) {
         512,
         NULL,
         tskIDLE_PRIORITY,
-        NULL
+        &rxTaskHandle
     );
 }
