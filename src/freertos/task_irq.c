@@ -10,6 +10,7 @@
 #include "config.h"
 #include "debug.h"
 #include "task_rx.h"
+#include "task_irq.h"
 
 
 #define RF_DIO1 15
