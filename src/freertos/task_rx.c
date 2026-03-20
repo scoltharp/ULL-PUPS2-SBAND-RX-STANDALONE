@@ -13,6 +13,8 @@
 #define RX_BUFFER_SIZE 255
 #define RX_BUFFER_LENGTH 255
 
+uint8_t rx_buf[RX_BUFFER_SIZE];
+uint16_t rx_len = RX_BUFFER_LENGTH;
 TaskHandle_t rxTaskHandle = NULL;
 
 void rx_task(void *params) {
