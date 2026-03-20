@@ -11,6 +11,7 @@
 #include "task_rx.h"
 
 #define RX_BUFFER_SIZE 255
+#define RX_BUFFER_LENGTH 255
 
 TaskHandle_t rxTaskHandle = NULL;
 
@@ -24,6 +25,8 @@ void rx_task(void *params) {
 
     while (1)
     {
+        SetDioIrqParams(IRQ_TX_DONE, IRQ_RX_DONE);
+        sx1280_start_receive(RX_BUFFER_SIZE, RX_BUFFER_LENGTH);
         ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
 
         //if (lora1280_poll_receive_done())
