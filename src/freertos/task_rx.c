@@ -27,7 +27,12 @@ void rx_task(void *params) {
     {
         SetDioIrqParams(IRQ_TX_DONE, IRQ_RX_DONE);
         sx1280_start_receive(RX_BUFFER_SIZE, RX_BUFFER_LENGTH);
-        ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+        BaseType_t notified = ulTaskNotifyTake(pdTRUE, pdMS_TO_TICKS(5000));
+            if (notified == 0) {
+                printf("[RX] Timeout - IRQ never fired\n");
+            } else {
+                printf("[RX] Notification received\n");
+            }
 
         //if (lora1280_poll_receive_done())
         // {
