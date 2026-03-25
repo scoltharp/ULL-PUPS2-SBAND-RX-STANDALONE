@@ -24,6 +24,10 @@ void rx_task(void *params) {
     //lora1280_start_receive(rx_buf, &rx_len);
 
     while (1) {
+
+        printf("[IRQ] DIO2 interrupt received\n");
+        ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+        
         if (sx1280_poll_receive_done()) {
             DEBUG_INFO("[RX] Packet received (%u bytes): ", rx_len);
             for (uint16_t i = 0; i < rx_len; i++) {

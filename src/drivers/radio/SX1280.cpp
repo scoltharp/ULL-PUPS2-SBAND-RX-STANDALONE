@@ -649,19 +649,17 @@ uint8_t SX1280::WaitForIRQ_RxDone(void)
 	//if(gpio_get(RF_DIO1))//if IRQ check
 	if(gpio_get(RF_DIO2)) // was RF_DIO1
 	{
-		Irq_Status = GetIrqStatus();//read Irq Status
-		if((Irq_Status&0x0002) == IRQ_RX_DONE)
-		{
-			GetRxBufferStatus(&packet_size, &buf_offset);
-			ReadBuffer(buf_offset, rxbuf_pt, packet_size+1);
-			*rxcnt_pt = packet_size;
-			ClearIrqStatus(IRQ_RX_DONE);//Clear the IRQ RxDone flag
-			RxInit();
-			return 1;
-		}
+
+		GetRxBufferStatus(&packet_size, &buf_offset);
+		ReadBuffer(buf_offset, rxbuf_pt, packet_size+1);
+		*rxcnt_pt = packet_size;
+		ClearIrqStatus(IRQ_RX_DONE);//Clear the IRQ RxDone flag
+		RxInit();
+		return 1;
 	}
-	return 0;
 }
+
+
 
 
 void SX1280::SX1280_Config(void)

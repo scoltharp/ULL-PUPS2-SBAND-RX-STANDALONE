@@ -21,7 +21,6 @@ void irq_task(uint gpio, uint32_t events)
 
     if (gpio_get(RF_DIO2))
     {
-        printf("[IRQ] DIO2 interrupt received\n");
         vTaskNotifyGiveFromISR(rxTaskHandle, &xHigherPriorityTaskWoken);
     }
 
